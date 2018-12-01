@@ -1,0 +1,3 @@
+
+a9 1 2 8 tri7
+.model tri7 d_tristate(delay = 0.5e-9 input_load = 0.5e-12 enable_load = 0.5e-12)
