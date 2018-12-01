@@ -15,6 +15,7 @@ Source Drain current vs Source Gate Voltage
 
 ## q2 CMOS inverter
 ## q3 Logic Function ((a'+b')c') using CMOS logic
+ not getting output
 
 # References:
 - q1:
