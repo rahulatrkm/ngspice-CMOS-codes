@@ -1,0 +1,13 @@
+nMOS Transfer Characteristis
+vdd 3 0 dc 5v
+vd 3 2 dc 0v
+vgs 1 0 dc 2v
+m1 2 1 0 0 nmos1 w=1u l=1u
+.model nmos1 nmos vt0=1.5v kp=200u
+.dc vdd 0 5 0.01
+.control
+run
+plot i(vd) ylabel 'Ids' xlabel 'Vds' title 'Output Characteristics'
+.endc
+.end
+
