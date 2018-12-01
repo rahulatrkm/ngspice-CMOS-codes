@@ -1,4 +1,4 @@
 BSIM3v3.3.0 Parameter Checking.
-Model = nmos1
+Model = mos1
 Warning: Pd = 0 is less than W.
 Warning: Ps = 0 is less than W.

@@ -7,7 +7,7 @@ m1 2 1 0 0 nmos1 w=1u l=1u
 .dc vgs 0 2 0.01
 .control
 run
-plot i(vd) ylabel 'Ids' xlabel 'Vds' title 'Transfer Characteristics'
+plot i(vd) ylabel 'Ids' xlabel 'Vgs' title 'Transfer Characteristics'
 .endc
 .end
 
