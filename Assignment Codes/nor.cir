@@ -1,0 +1,24 @@
+NOR gate design using CMOS
+vdd 5 0 dc 5v
+vin1 1 0 pulse (0v 5v 0 1ns 1ns 10ns 20ns)
+vin2 2 0 pulse (0v 5v 0 1ns 1ns 5ns 20ns)
+
+*mos1 = nmos
+*mos2 = pmos
+*upper half
+m1 4 1 5 5 mos2 l=1u w=40u
+m2 3 2 4 4 mos2 l=1u w=40u
+
+*lower half
+m3 3 1 0 0 mos1 l=1u w=100u
+m4 3 2 0 0 mos1 l=1u w=100u
+
+.model mos1 nmos vto=1v kp=200u
+.model mos2 pmos vto=-1v kp=80u
+
+.tran 0.1ns 120ns
+.control
+run
+plot v(3) v(1) v(2)
+.endc
+.end
