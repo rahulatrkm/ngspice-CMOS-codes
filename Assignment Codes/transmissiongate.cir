@@ -1,0 +1,17 @@
+CMOS transmission gate
+vdd 4 0 dc 5v
+vina 2 0 pulse(0v 5v 0 1ns 1ns 10ns 20ns)
+vinb 1 0 pulse(0v 5v 0 1ns 1ns 5ns 20ns)
+vinbbar 3 0 pulse(5v 0v 0 1ns 1ns 10ns 20ns)
+m1 5 1 2 0 nmod w=100u l=1u
+m2 2 3 5 4 pmod w=40u l=1u
+
+.model nmod nmos vto=1v kp=200u
+.model pmod pmos vto=-v kp=80u
+
+.tran 0.1ns 120ns
+.control
+run
+plot v(5) v(2) v(1)
+.endc
+.end
