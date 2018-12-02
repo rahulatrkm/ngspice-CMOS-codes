@@ -23,6 +23,6 @@ m6 6 4 0 0 mos1 l=1u w=40u
 .tran 0.1ns 120ns
 .control
 run
-plot v(6) v(1) v(2)
+plot v(3) v(1) v(2)
 .endc
 .end

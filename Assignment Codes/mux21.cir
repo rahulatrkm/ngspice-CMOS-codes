@@ -1,0 +1,33 @@
+2 input mux using subcircuit
+vdd 9 0 dc 5v
+va 1 0 pulse (0v 5v 0 1ns 1ns 10ns 20ns)
+vb 2 0 pulse (0v 5v 0 1ns 1ns 20ns 40ns)
+v2 4 0 dc 0v
+
+.subckt not 3 0 1 2
+m1 2 1 0 0 mos1 l=1u w=40u
+m2 2 1 3 3 mos2 l=1u w=100u
+.model mos1 nmos vto=1v kp=200u
+.model mos2 pmos vto=-1v kp=80u
+.ends
+
+m1 8 1 9 9 mos2 l=1u w=100u
+m2 3 2 4 4 mos2 l=1u w=100u
+m3 4 1 5 5 mos2 l=1u w=100u
+m4 3 2 4 4 mos2 l=1u w=100u
+m5 4 1 5 5 mos1 l=1u w=40u
+m6 3 2 4 4 mos1 l=1u w=40u
+m7 4 1 5 5 mos1 l=1u w=40u
+m8 3 2 4 4 mos1 l=1u w=40u
+xnot1 9 0 7 10 not
+xnot2 9 0 4 3 not
+
+.model mos1 nmos vto=1v kp=200u
+.model mos2 pmos vto=-1v kp=80u
+
+.tran 0.1ns 200ns
+.control
+run
+plot v(10) v(1) v(2)
+.endc
+.end
