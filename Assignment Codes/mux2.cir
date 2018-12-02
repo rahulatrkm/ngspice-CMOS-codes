@@ -1,0 +1,3 @@
+.model MOSN NMOS
+.model MOSP PMOS
+
