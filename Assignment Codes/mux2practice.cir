@@ -1,0 +1,37 @@
+MUX 2:1 using subcircuit
+vdd 9 0 dc 5v
+vin1 1 0 pulse(0v 5v 0 1ns 1ns 10ns 20ns)
+vin2 2 0 pulse(0v 5v 0 1ns 1ns 20ns 40ns)
+vs 4 0 dc 0v
+
+.subckt not 0 1 2 3
+m1 2 1 3 3 pmod w=100u l=1u
+m2 2 1 0 0 nmod w=40u l=1u
+.model nmod nmos vto=1v kp=200u
+.model pmod pmos vto=-1v kp=80u
+.ends
+
+*upper half
+m1 8 1 9 9 pmod w=100u l=1u
+m2 8 3 9 9 pmod w=100u l=1u
+m3 7 2 8 9 pmod w=100u l=1u
+m4 7 4 8 9 pmod w=100u l=1u
+
+*lower half
+m5 7 1 5 0 nmod w=40u l=1u
+m6 7 2 6 0 nmod w=40u l=1u
+m7 5 3 0 0 nmod w=40u l=1u
+m8 6 4 0 0 nmod w=40u l=1u
+
+.model nmod nmos vto=1v kp=200u
+.model pmod pmos vto=-1v kp=80u
+
+xnot1 0 4 3 9 not
+xnot2 0 7 10 9 not
+
+.tran 0.1ns 200ns
+.control
+run
+plot v(10) v(1) v(2)
+.endc
+.end

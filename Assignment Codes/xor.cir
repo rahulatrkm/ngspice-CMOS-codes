@@ -1,8 +1,7 @@
 Two input mux using subcircuit
-vdd 9 0 dc 5v
-va 1 0 pulse (0v 5v 0 1ns 1ns 10ns 20ns)
-vb 2 0 pulse (0v 5v 0 1ns 1ns 20ns 40ns)
-v2 4 0 dc 5v
+vdd 4 0 dc 5v
+va 3 0 pulse (0v 5v 0 1ns 1ns 5ns 10ns)
+vb 1 0 pulse (0v 5v 0 1ns 1ns 10ns 20ns)
 
 .subckt not 3 0 1 2
 m1 2 1 0 0 nmod l=1u w=40u
@@ -11,6 +10,8 @@ m2 2 1 3 3 pmod l=1u w=100u
 .model pmod pmos vto=-1v kp=80u
 .ends
 
+* 1,2 - input lines, 4 - selection line
+.subckt mux21 0 1 2 4 9 10
 m1 8 1 9 9 pmod l=1u w=100u
 m2 7 2 8 9 pmod l=1u w=100u
 m3 8 3 9 9 pmod l=1u w=100u
@@ -21,13 +22,17 @@ m7 7 2 6 0 nmod l=1u w=40u
 m8 6 4 0 0 nmod l=1u w=40u
 xnot1 9 0 7 10 not
 xnot2 9 0 4 3 not
-
 .model nmod nmos vto=1v kp=200u
 .model pmod pmos vto=-1v kp=80u
+.ends
 
-.tran 0.1ns 200ns
+xnot 4 0 1 2 not
+xmux 0 1 2 3 4 5 mux21
+
+.tran 1ns 200ns
 .control
 run
-plot v(10) v(1) v(2)
+plot v(1) v(2) v(5)
+plot v(10)
 .endc
 .end
