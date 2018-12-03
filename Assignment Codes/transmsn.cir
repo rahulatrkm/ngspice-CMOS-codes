@@ -1,0 +1,16 @@
+CMOS transmission gate (Code in grp)
+m1 2 4 1 1 mos1 l=1u w=1u
+.model mos1 nmos level=49 vesion=3.3.0
+m2 2 3 1 1 mos2 l=1u w=1u
+.model mos2 pmos level=49 version=3.3.0
+v1 1 0 pwl(0 0 300n 0 301n 5 600n 5 601n 0 900n 0 901n 5 1200n 5)
+v2 4 0 pwl(0 5 300n 5 301n 5 600n 5 601n 0 900n 0 901n 0 1200n 0)
+v3 3 0 pwl(0 0 300n 0 301n 0 600n 0 601n 5 900n 5 901n 5 1200n 5)
+.tran 10ns 1200ns
+.control
+run
+plot v(1)
+plot v(2)
+plot v(4)
+.endc
+.end

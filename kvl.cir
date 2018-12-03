@@ -1,0 +1,13 @@
+v1 a 0 5V
+R1 a b 15
+R2 b 0 30
+R3 b c 10
+R4 c 0 10
+I1 0 c 1
+.OP
+.control
+run
+print v(a)
+print v(a,b)+v(b,c)+v(c)
+.endc
+.END

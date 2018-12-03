@@ -1,0 +1,10 @@
+*******transient**********
+r1 1 2 1k
+c1 2 0 10u
+vin 1 0 pwl(0 0 1m 5)
+.tran 10m 100m
+.control
+run
+plot v(1) v(2)
+.endc
+.end
